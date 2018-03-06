@@ -1,10 +1,15 @@
 
-.players {
-  font-size:10px;
+button {
+  width:50px;
+  font-size:18px;
+}
+.piece {
+  font-size:40px;
   width:46px;
   height:46px;
   border:2px solid black;
-  align-items: center;
+  text-align:center;
+  position: absolute;
 }
 .player0 {
   background-color:white;

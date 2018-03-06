@@ -4,7 +4,6 @@
   <title>Connect 4</title>
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="CFBoard.js"></script>
-  <script type="text/javascript" src="BoardDisplay.js"></script>
 </head>
 
 <body>
@@ -23,9 +22,13 @@
         </td>
       </tr>
   		<tr>
-  			<td width=350 id="board">
+  			<td width=350>
+          <div style="position:relative" id="htmlBoard">
+
+          </div>
         </td>
       </tr>
   	</table>
+    <script type="text/javascript" src="BoardDisplay.js"></script>
 </body>
 </html>

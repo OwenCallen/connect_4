@@ -4,7 +4,7 @@ let board = new CFBoard();
 displayBoard()
 
 function displayBoard(){
-  document.getElementById('board').innerHTML = generateHTML(board.arr())
+  document.getElementById('htmlBoard').innerHTML = generateHTML(board.arr)
 
 }
 

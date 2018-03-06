@@ -4,8 +4,15 @@ class CFBoard {
     for(let i = 0 ; i<this._arr.length ; i++){
       this._arr[i] = [0, 0, 0, 0, 0, 0];
     }
+    //turn will ether be 1 or 2
     this._turn = 1;
-    this.compIsPlayer = 0
+    //0 for nether
+    this._compIsPlayer = 0;
+    //0 for nether, 3 for a draw
+    this._winnerIs = 0;
+  }
+  gameOver(){
+    return false;
   }
   canAddToCol(num){
     if(this._arr[num][5]==0){
@@ -17,17 +24,19 @@ class CFBoard {
   }
   addToCol(num){
     let player = this._turn;
+    if(this.canAddToCol(num)){
+      if(player==1){
+        this._turn = 2;
+      }
+      else{
+        this._turn = 1;
+      }
+    }
     for(let i = 0 ; i<this._arr.length ; i++){
       if(this._arr[num][i]==0){
         this._arr[num][i] = player;
         i=this._arr.length;
       }
-    }
-    if(player==1){
-      this._turn = 2;
-    }
-    else{
-      this._turn = 1;
     }
   }
   get arr(){
@@ -39,7 +48,7 @@ class CFBoard {
   logBoard(){
     let str = '';
     for(let row = this._arr[0].length-1 ; row >= 0 ; row--){
-      str = '';
+      str = 'row '+row+': ';
       for(let col = 0 ; col < this._arr.length ; col++){
         str+=this._arr[col][row]+' ';
       }
@@ -49,6 +58,6 @@ class CFBoard {
 }
 
 
-
+// testing below
 let myBoard = new CFBoard();
 myBoard.logBoard();

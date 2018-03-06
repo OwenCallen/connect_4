@@ -1,5 +1,5 @@
 
-.player0 {background-color:white; font-size:10px; width:23px; height:23px; border:1px solid black; }
-.player1 {background-color:yellow; font-size:10px; width:23px; height:23px; border:1px solid black; }
-.player2 {background-color:red; font-size:10px; width:23px; height:23px; border:1px solid black; }
+.player0 {background-color:white; font-size:10px; width:46px; height:46px; border:2px solid black;  align-items: center;}
+.player1 {background-color:yellow; font-size:10px; width:46px; height:46px; border:2px solid black;  align-items: center;}
+.player2 {background-color:red; font-size:10px; width:46px; height:46px; border:2px solid black; align-items: center;}
 cr {}

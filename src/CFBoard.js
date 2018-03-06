@@ -31,11 +31,11 @@ class CFBoard {
       else{
         this._turn = 1;
       }
-    }
-    for(let i = 0 ; i<this._arr.length ; i++){
-      if(this._arr[num][i]==0){
-        this._arr[num][i] = player;
-        i=this._arr.length;
+      for(let i = 0 ; i<this._arr.length ; i++){
+        if(this._arr[num][i]==0){
+          this._arr[num][i] = player;
+          i=this._arr.length;
+        }
       }
     }
   }

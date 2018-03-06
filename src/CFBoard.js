@@ -37,8 +37,13 @@ class CFBoard {
     return this._turn;
   }
   logBoard(){
-    for(let row = 5 ; row >= 0 ; row--){
-
+    let str = '';
+    for(let row = this._arr[0].length-1 ; row >= 0 ; row--){
+      str = '';
+      for(let col = 0 ; col < this._arr.length ; col++){
+        str+=this._arr[col][row]+' ';
+      }
+      console.log(str);
     }
   }
 }
@@ -46,3 +51,4 @@ class CFBoard {
 
 
 let myBoard = new CFBoard();
+myBoard.logBoard();

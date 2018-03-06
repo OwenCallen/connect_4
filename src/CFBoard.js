@@ -1,8 +1,8 @@
 class CFBoard {
   constructor(){
     this._arr = new Array(7);
-    for(let i = 0 ; i<_arr.length ; i++){
-      arr = [0, 0, 0, 0, 0, 0];
+    for(let i = 0 ; i<this._arr.length ; i++){
+      this._arr[i] = [0, 0, 0, 0, 0, 0];
     }
     this._turn = 1;
     this.compIsPlayer = 0
@@ -36,6 +36,13 @@ class CFBoard {
   get turn(){
     return this._turn;
   }
+  logBoard(){
+    for(let row = 5 ; row >= 0 ; row--){
+
+    }
+  }
 }
+
+
+
 let myBoard = new CFBoard();
-console.log('here is the board'+myBoard.arr());

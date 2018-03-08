@@ -46,6 +46,34 @@ class CFBoard {
       this._winnerIs = team;
       return true;
     }
+
+    let left = 0;
+    dist = 1;
+    while(col-dist>=0){
+      if(this._arr[col-dist][row]==team){
+        left++;
+      }
+      else{
+        dist=col;
+      }
+      dist++;
+    }
+    let right = 0;
+    dist = 1;
+    while(col+dist<7){
+      if(this._arr[col+dist][row]==team){
+        right++;
+      }
+      else{
+        dist=6;
+      }
+      dist++;
+    }
+    if(left+1+right>=4){
+      this._winnerIs = team;
+      return true;
+    }
+    return false;
   }
 
   canAddToCol(num){

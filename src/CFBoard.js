@@ -16,6 +16,7 @@ class CFBoard {
   gameOver(){
     return false;
   }
+
   canAddToCol(num){
     if(this._arr[num][5]==0 && this._winnerIs==0){
       return true;
@@ -24,10 +25,12 @@ class CFBoard {
       return false;
     }
   }
+
   addToCol(num){
     let player = this._turn;
     if(this.canAddToCol(num)){
       this._moveHistory.push(num);
+      //this.logHistory();
       if(player==1){
         this._turn = 2;
       }
@@ -42,12 +45,15 @@ class CFBoard {
       }
     }
   }
+
   get arr(){
     return this._arr;
   }
+
   get turn(){
     return this._turn;
   }
+
   undo (){
     let lastMove = this._moveHistory.pop();
     for(let i = 5 ; i>=0 ; i--){
@@ -57,6 +63,7 @@ class CFBoard {
       }
     }
   }
+
   logBoard(){
     let str = '';
     for(let row = this._arr[0].length-1 ; row >= 0 ; row--){
@@ -66,11 +73,14 @@ class CFBoard {
       }
       console.log(str);
     }
-    console.log(this._moveHistory);
+  }
+
+  logHistory(){
+    console.log('Move history: '+ this._moveHistory);
   }
 }
 
 
 // testing below
-let myBoard = new CFBoard();
-myBoard.logBoard();
+//let myBoard = new CFBoard();
+//myBoard.logHistory();

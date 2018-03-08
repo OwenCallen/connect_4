@@ -6,7 +6,6 @@ displayBoard();
 function colClick(col){
   if(board.canAddToCol(col)){
     board.addToCol(col);
-    board.logBoard();
     displayBoard();
     showTurn();
   } else {

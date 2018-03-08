@@ -14,6 +14,83 @@ class CFBoard {
     this._moveHistory = [];
   }
 
+  canAddToCol(num){
+    if(this._arr[num][5]==0 && this._winnerIs==0){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  addToCol(num){
+    let player = this._turn;
+    if(this.canAddToCol(num)){
+      this._moveHistory.push(num);
+      if(player==1){
+        this._turn = 2;
+      }
+      else{
+        this._turn = 1;
+      }
+      for(let i = 0 ; i<this._arr.length ; i++){
+        if(this._arr[num][i]==0){
+          this._arr[num][i] = player;
+          this.isPartOf4(num, i);
+          this.boardIsFull();
+          i=this._arr.length;
+        }
+      }
+    }
+  }
+
+  get arr(){
+    return this._arr;
+  }
+
+  get turn(){
+    switch (this._winnerIs) {
+      case 0:
+        return this._turn;
+        break;
+      case 1:
+        return 'Player 1 has won';
+        break;
+      case 2:
+        return 'Player 2 has won';
+        break;
+      case 3:
+        return 'The game is a draw';
+        break;
+    }
+    return this._turn;
+  }
+
+  undo(){
+    let lastMove = this._moveHistory.pop();
+    for(let i = 5 ; i>=0 ; i--){
+      if(this._arr[i]!==0){
+        this._arr[i]=0;
+        i=-1;
+      }
+    }
+  }
+
+  logBoard(){
+    let str = '';
+    for(let row = this._arr[0].length-1 ; row >= 0 ; row--){
+      str = 'row '+row+': ';
+      for(let col = 0 ; col < this._arr.length ; col++){
+        str+=this._arr[col][row]+' ';
+      }
+      console.log(str);
+    }
+  }
+
+  logHistory(){
+    console.log('Move history: '+ this._moveHistory);
+  }
+
   isPartOf4(col, row){
     let team = this._arr[col][row];
     if(team==0){
@@ -129,66 +206,16 @@ class CFBoard {
     return false;
   }
 
-  canAddToCol(num){
-    if(this._arr[num][5]==0 && this._winnerIs==0){
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
-
-  addToCol(num){
-    let player = this._turn;
-    if(this.canAddToCol(num)){
-      this._moveHistory.push(num);
-      if(player==1){
-        this._turn = 2;
-      }
-      else{
-        this._turn = 1;
-      }
-      for(let i = 0 ; i<this._arr.length ; i++){
-        if(this._arr[num][i]==0){
-          this._arr[num][i] = player;
-          this.isPartOf4(num, i);
-          i=this._arr.length;
-        }
+  boardIsFull(){
+    for(let i = 0 ; i<7 ; i++){
+      if(this._arr[i][5]==0){
+        return false;
       }
     }
-  }
-
-  get arr(){
-    return this._arr;
-  }
-
-  get turn(){
-    return this._turn;
-  }
-
-  undo (){
-    let lastMove = this._moveHistory.pop();
-    for(let i = 5 ; i>=0 ; i--){
-      if(this._arr[i]!==0){
-        this._arr[i]=0;
-        i=-1;
-      }
+    if(this._winnerIs==0){
+      this._winnerIs=3;
     }
-  }
-
-  logBoard(){
-    let str = '';
-    for(let row = this._arr[0].length-1 ; row >= 0 ; row--){
-      str = 'row '+row+': ';
-      for(let col = 0 ; col < this._arr.length ; col++){
-        str+=this._arr[col][row]+' ';
-      }
-      console.log(str);
-    }
-  }
-
-  logHistory(){
-    console.log('Move history: '+ this._moveHistory);
+    return true;
   }
 }
 

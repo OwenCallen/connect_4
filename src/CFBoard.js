@@ -65,11 +65,64 @@ class CFBoard {
         right++;
       }
       else{
-        dist=6;
+        dist=7;
       }
       dist++;
     }
     if(left+1+right>=4){
+      this._winnerIs = team;
+      return true;
+    }
+
+    let downLeft = 0;
+    dist = 1;
+    while(col-dist>=0 && row-dist>=0){
+      if(this._arr[col-dist][row-dist]==team){
+        downLeft++;
+      }
+      else{
+        dist=col;
+      }
+      dist++;
+    }
+    let upRight = 0;
+    dist = 1;
+    while(col+dist<7 && row+dist<6){
+      if(this._arr[col+dist][row+dist]==team){
+        upRight++;
+      }
+      else{
+        dist=7;
+      }
+      dist++;
+    }
+    if(downLeft+1+upRight>=4){
+      this._winnerIs = team;
+      return true;
+    }
+    let downRight = 0;
+    dist = 1;
+    while(col+dist<7 && row-dist>=0){
+      if(this._arr[col+dist][row-dist]==team){
+        downRight++;
+      }
+      else{
+        dist=7;
+      }
+      dist++;
+    }
+    let upLeft = 0;
+    dist = 1;
+    while(col-dist>=0 && row+dist<6){
+      if(this._arr[col-dist][row+dist]==team){
+        upLeft++;
+      }
+      else{
+        dist=7;
+      }
+      dist++;
+    }
+    if(downRight+1+upLeft>=4){
       this._winnerIs = team;
       return true;
     }

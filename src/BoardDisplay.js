@@ -32,7 +32,7 @@ function generateHTML(boardArr) {											// creates html to display inputed b
     for (var row = 0; row < 6; row++) {
       code += "<div class='piece player" + boardArr[col][row] + "' style='top:" +
         (280 - (row*50)) + "px; left:" + col*50 + "px' >";
-      code += boardArr[col][row]
+      code += boardArr[col][row];
       code += "</div>";
     }
   }

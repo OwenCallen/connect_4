@@ -10,12 +10,14 @@ class CFBoard {
     this._compIsPlayer = 0;
     //0 for nether, 3 for a draw
     this._winnerIs = 0;
+    //keeps track of moves made
+    this._moveHistory = [];
   }
   gameOver(){
     return false;
   }
   canAddToCol(num){
-    if(this._arr[num][5]==0){
+    if(this._arr[num][5]==0 && this._winnerIs==0){
       return true;
     }
     else{
@@ -25,6 +27,7 @@ class CFBoard {
   addToCol(num){
     let player = this._turn;
     if(this.canAddToCol(num)){
+      this._moveHistory.push(num);
       if(player==1){
         this._turn = 2;
       }
@@ -45,6 +48,15 @@ class CFBoard {
   get turn(){
     return this._turn;
   }
+  undo (){
+    let lastMove = this._moveHistory.pop();
+    for(let i = 5 ; i>=0 ; i--){
+      if(this._arr[i]!==0){
+        this._arr[i]=0;
+        i=-1;
+      }
+    }
+  }
   logBoard(){
     let str = '';
     for(let row = this._arr[0].length-1 ; row >= 0 ; row--){
@@ -54,6 +66,7 @@ class CFBoard {
       }
       console.log(str);
     }
+    console.log(this._moveHistory);
   }
 }
 

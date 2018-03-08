@@ -20,7 +20,7 @@ class randoComp {
       };
     }
     move = Math.floor(Math.random()*moves.length);
-    return move;
+    return moves[move];
   }
 
 }

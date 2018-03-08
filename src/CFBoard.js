@@ -6,15 +6,46 @@ class CFBoard {
     }
     //turn will ether be 1 or 2
     this._turn = 1;
-    //0 for nether
-    this._compIsPlayer = 0;
+    this._player1IsComp = false;
+    this._player2IsComp = false;
     //0 for nether, 3 for a draw
     this._winnerIs = 0;
     //keeps track of moves made
     this._moveHistory = [];
   }
-  gameOver(){
-    return false;
+
+  isPartOf4(col, row){
+    let team = this._arr[col][row];
+    if(team==0){
+      return false;
+    }
+
+    let down = 0;
+    let dist = 1;
+    while(row-dist>=0){
+      if(this._arr[col][row-dist]==team){
+        down++;
+      }
+      else{
+        dist=row;
+      }
+      dist++;
+    }
+    let up = 0;
+    dist = 1;
+    while(row+dist<6){
+      if(this._arr[col][row+dist]==team){
+        up++;
+      }
+      else{
+        dist=6;
+      }
+      dist++;
+    }
+    if(down+1+up>=4){
+      this._winnerIs = team;
+      return true;
+    }
   }
 
   canAddToCol(num){
@@ -30,7 +61,6 @@ class CFBoard {
     let player = this._turn;
     if(this.canAddToCol(num)){
       this._moveHistory.push(num);
-      //this.logHistory();
       if(player==1){
         this._turn = 2;
       }
@@ -40,6 +70,7 @@ class CFBoard {
       for(let i = 0 ; i<this._arr.length ; i++){
         if(this._arr[num][i]==0){
           this._arr[num][i] = player;
+          this.isPartOf4(num, i);
           i=this._arr.length;
         }
       }
